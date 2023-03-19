@@ -1,29 +1,31 @@
-//рандомна фукнція підбору кольору
+//Функция рандомного цвета
 function getRandomHexColor() {
   return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
 }
 
-//знайти елементи
+//Поиск элементов
 const btnStart = document.querySelector('[data-start]');
 const btnStop = document.querySelector('[data-stop]');
 let timerId = null;
 const body = document.body;
 
-//слухач при натисканні кнопки старт - встановлює інтервал, змінює колір відповідно до рандомної функції
+//слушатель при нажатии на старт создает интервал, и присваивает значение функции с рандомным цветом
 btnStart.addEventListener("click", () => {
   timerId = setInterval(() => {
    body.style.backgroundColor = getRandomHexColor();
 	body.style.height = "100vw";
   }, 1000);
-  //робить кнопку старт не активною
+  //кномка старт не активная
   btnStart.disabled = true;
+  btnStop.disabled = false;
 });
 
-//слухач при натисканні кнопки стоп - очищує інтервал
+//слушатель при нажатии на стоп очищает интервал
 btnStop.addEventListener("click", () => {
 	clearInterval(timerId);
-	//робить старт активною
+	//делает кнопку старт активной
 	btnStart.disabled = false;
+	btnStop.disabled = true;
 });
 
 
